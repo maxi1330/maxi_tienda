@@ -1,0 +1,12 @@
+.ItemContainer {
+    margin-top: 2rem;
+}
+
+.columnDescriptionItem{
+    padding-bottom: 10px;
+}
+
+.priceItem{
+    margin: auto;
+    text-align: start;
+}
