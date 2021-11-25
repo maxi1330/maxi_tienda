@@ -18,26 +18,26 @@ function ItemCount({stock, initial, onAdd}){
 
     return (
     <>
-        <div class="row">
-            <div class="col s3">
-            <div class="card">
-                <div class="card-image">
+        <div className="row">
+            <div className="col s3">
+            <div className="card">
+                <div className="card-image">
                     <img src={imagenAuto}
                          alt='imagen auto'/>
-                    <span class="card-title">Volkswagen Golf 1.4</span>
+                    <span className="card-title">Volkswagen Golf 1.4</span>
                 </div>
-                <div class="card-content">
+                <div className="card-content">
                     <p>2019 | 58.000 km · Hace 11 días<br/>
                         Volkswagen Golf 1.4 Comfortline Tsi<br/>
                         $3.750.000<br/>
                         Stock: {count}
                     </p><br/>
-                    <div class="row valign-wrapper">
+                    <div className="row valign-wrapper">
                         <button className="btn-floating btn-small blue s2"
                                 onClick={() => addItem()}>
                                     <i className="material-icons">add</i>
                         </button>
-                        <div class="col s10 center-align">{count}</div>
+                        <div className="col s10 center-align">{count}</div>
                         <button className="btn-floating btn-small blue s2"
                                 onClick={() => removeItem()}>
                                     <i className="material-icons">remove</i>

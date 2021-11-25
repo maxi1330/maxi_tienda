@@ -3,7 +3,7 @@ import Item from './Item';
 
 function ItemList ({items}) {
     return (
-        <Fragment class='row'>
+        <Fragment className='row'>
             {items.map((item) =>(
                     <Item key={item.id} item={item}/>
                     )
