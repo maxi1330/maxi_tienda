@@ -13,7 +13,7 @@ function ItemDetail ({title, image, description, price }) {
                             <div>
                                 <h4>{title}</h4>
                                 <p class="light">{description}</p>
-                                <p className="priceItem">Precio: ${price}</p>
+                                <p className="priceItem">Precio: {price}</p>
                             </div>
                         </div>
                     </div>

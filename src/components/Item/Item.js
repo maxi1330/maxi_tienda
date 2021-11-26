@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Item.css";
 
 function Item ({item}) {
     return (
@@ -13,9 +14,9 @@ function Item ({item}) {
                         <span className="card-title">{item.title}</span>
                     </div>
                     <div className="card-content">
-                        <p>{item.description}
-                        </p><br/>
-                        <p>${item.price}</p>
+                        <textarea>{item.description}
+                        </textarea><br/>
+                        <p>{item.price}</p>
                     </div>
                     <div className="card-action center">
                         <button className="btn">Agregar al carrito</button>

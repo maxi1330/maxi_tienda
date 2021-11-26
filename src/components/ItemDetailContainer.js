@@ -10,7 +10,7 @@ function ItemDetailContainer () {
     useEffect(() => {
         const getProduct = new Promise( (resolve,eject) => {
             setTimeout(() => {
-                resolve(productList.find((item) => item.id === itemId));
+                resolve(productList.find((item) => item.id === parseInt(itemId)));
             }, 2000);
         });
 
