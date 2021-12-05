@@ -11,7 +11,7 @@ function ItemDetailContainer () {
     const { addToCart } = useContext(CartContext);
 
     const onAdd = (quantity) => {
-        addToCart({...product, quantity});
+        addToCart(product, quantity);
         setgoToCart(true);
     };
 

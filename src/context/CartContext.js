@@ -5,18 +5,18 @@ export const CartContext = React.createContext();
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
 
-    const addToCart = (item) => {
+    const addToCart = (item, quantity) => {
         if(isInCart(item.id)){
             //Si esta en el carrito le sumo la cantidad
             cart.map( function(product){
-                if(product.item.id === item.id){
-                    product.item.quantity = product.item.quantity + item.quantity;
+                if(product.id === item.id){
+                    product.quantity = product.quantity + quantity;
                 }
                 return product;
               });
         } else {
             //Si no esta, lo agrego
-            addItem(item);
+            addItem(item, quantity);
         }
         
     }
@@ -36,13 +36,13 @@ export const CartProvider = ({children}) => {
     }
 
     //Agrega item al carrito
-    const addItem = (item) => {
-        setCart([...cart, {item}]);
+    const addItem = (item, quantity) => {
+        setCart([...cart, {...item, quantity}]);
     }
 
     //Existe en el carrito
     const isInCart = (itemId) => {
-        let productSearch = cart.find((element)=> element.item.id === itemId);
+        let productSearch = cart.find((element)=> element.id === itemId);
         return  (productSearch !== undefined);
     }
 
