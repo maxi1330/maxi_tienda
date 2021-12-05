@@ -10,7 +10,6 @@ function ItemListContainer () {
     useEffect(() => {
         const getProducts = new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log(productList)
                 resolve(categoryId ? productList.filter(item => item.category === categoryId) : productList);
             }, 1000);
         });
@@ -25,9 +24,9 @@ function ItemListContainer () {
     }, [categoryId]);
 
     return (
-        <fragment className='container row'>
+        <div className='container row'>
             <ItemList items={items}/>
-        </fragment>
+        </div>
     );
 }
 

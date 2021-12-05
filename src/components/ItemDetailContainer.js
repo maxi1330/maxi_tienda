@@ -1,11 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ItemDetail from './ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 import { productList } from "../data/productsList";
+import { CartContext } from '../context/CartContext';
 
 function ItemDetailContainer () {
     const [product, setProduct] = useState({});
+    const [goToCart, setgoToCart] = useState(false);
     const { itemId } = useParams();
+    const { addToCart } = useContext(CartContext);
+
+    const onAdd = (quantity) => {
+        addToCart({...product, quantity});
+        setgoToCart(true);
+    };
 
     useEffect(() => {
         const getProduct = new Promise( (resolve,eject) => {
@@ -21,9 +29,9 @@ function ItemDetailContainer () {
     }, [itemId]);
 
     return (
-        <fragment className='container row'>
-            <ItemDetail {...product}/>
-        </fragment>
+        <div className='container row'>
+            <ItemDetail {...product} onAdd= {onAdd} goToCart={goToCart}/>
+        </div>
     );
 }
 

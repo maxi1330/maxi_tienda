@@ -14,8 +14,7 @@ function Item ({item}) {
                         <span className="card-title">{item.title}</span>
                     </div>
                     <div className="card-content">
-                        <textarea>{item.description}
-                        </textarea><br/>
+                        <textarea value={item.description} readOnly/><br/>
                         <p>{item.price}</p>
                     </div>
                     <div className="card-action center">
