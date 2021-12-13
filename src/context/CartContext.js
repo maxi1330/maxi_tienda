@@ -28,11 +28,7 @@ export const CartProvider = ({children}) => {
 
     //Borra item por ID
     const removeItem = (itemId) => {
-        //Busco el producto, busco el indice y lo borro
-        let productSearch = cart.find((element)=> element.item.id === itemId);
-        if(productSearch === undefined) {return}
-        let index = cart.indexOf(productSearch);
-        cart.splice(index,1);
+        setCart(cart.filter((element)=> element.id !== itemId));
     }
 
     //Agrega item al carrito
@@ -46,7 +42,19 @@ export const CartProvider = ({children}) => {
         return  (productSearch !== undefined);
     }
 
+    const cartDetail = () => {
+        let priceTotal = 0;
+        let quantityProducts = 0;
+        cart.map( function(product){
+            quantityProducts += product.quantity;
+            priceTotal += product.quantity * product.price;
+            return product;
+          });
+          console.log(quantityProducts)
+        return {priceTotal, quantityProducts}
+    }
+
     return (
-        <CartContext.Provider value={{addToCart, clear, removeItem, cart}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{addToCart, clear, removeItem, cart, cartDetail}}>{children}</CartContext.Provider>
     )
 }

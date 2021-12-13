@@ -1,7 +1,13 @@
 import CartWidget from './CartWidget';
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function NavBar () {
+
+  const { cartDetail } = useContext(CartContext);
+  const { quantityProducts } = cartDetail();
+
   const categories = [
     { id: '1', address: '/', text: 'Todos los productos'},
     { id: '2', address: '/category/phones', text: 'Celulares'},
@@ -16,7 +22,7 @@ function NavBar () {
           {categories.map( (cat) => {
               return <li><NavLink to={cat.address} key={cat.id}>{cat.text}</NavLink></li>;})
           }
-          <li><CartWidget className="right" quantity='6'/></li>
+          <li hidden={quantityProducts < 1}><NavLink to={'/cart'} key={'4'}><CartWidget className="right" quantity={quantityProducts}/></NavLink></li>
         </ul>
       </div>
     </nav>
