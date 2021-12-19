@@ -3,8 +3,10 @@ import ItemDetail from './ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 import { productList } from "../data/productsList";
 import { CartContext } from '../context/CartContext';
+import { doc, getDoc, getFirestore} from 'firebase/firestore';
 
 function ItemDetailContainer () {
+    const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState({});
     const [goToCart, setgoToCart] = useState(false);
     const { itemId } = useParams();
@@ -16,22 +18,24 @@ function ItemDetailContainer () {
     };
 
     useEffect(() => {
-        const getProduct = new Promise( (resolve,eject) => {
-            setTimeout(() => {
-                resolve(productList.find((item) => item.id === parseInt(itemId)));
-            }, 2000);
+        const db = getFirestore();
+        const ref = doc(db, 'products', itemId);
+        getDoc(ref).then((snapshot) => {
+            setProduct({
+                id: snapshot.id,
+                ...snapshot.data(),
+            })
         });
-
-        getProduct.then((result) => {
-            setProduct (result);
-        });
-   
+        setLoading(false);
     }, [itemId]);
 
     return (
+        !loading ? 
         <div className='container row'>
             <ItemDetail {...product} onAdd= {onAdd} goToCart={goToCart}/>
         </div>
+        :
+        <div>Cargando...</div>
     );
 }
 
