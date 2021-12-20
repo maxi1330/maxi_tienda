@@ -4,6 +4,7 @@ import { useState } from "react";
 export const CartContext = React.createContext();
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
+    const [userEmail, setUserEmail] = useState('');
 
     const addToCart = (item, quantity) => {
         if(isInCart(item.id)){
@@ -50,11 +51,23 @@ export const CartProvider = ({children}) => {
             priceTotal += product.quantity * product.price;
             return product;
           });
-          console.log(quantityProducts)
         return {priceTotal, quantityProducts}
     }
 
+    const setUser = (form) => {
+        setUserEmail(form);
+    }
+
     return (
-        <CartContext.Provider value={{addToCart, clear, removeItem, cart, cartDetail}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={
+            {addToCart, 
+             clear, 
+             removeItem, 
+             cart, 
+             cartDetail, 
+             setUser, 
+             userEmail}}>
+                 {children}
+        </CartContext.Provider>
     )
 }

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ItemList from "./ItemList";
 import { useParams } from 'react-router-dom';
-import { productList } from "../data/productsList";
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 function ItemListContainer () {

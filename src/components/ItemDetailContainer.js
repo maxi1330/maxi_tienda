@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ItemDetail from './ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
-import { productList } from "../data/productsList";
 import { CartContext } from '../context/CartContext';
 import { doc, getDoc, getFirestore} from 'firebase/firestore';
 

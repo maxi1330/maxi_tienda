@@ -1,13 +1,42 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./../../context/CartContext";
 import { NavLink } from "react-router-dom";
 import "./Cart.css";
+import Order from "../Order/Order";
+import { addDoc, collection, getFirestore } from "@firebase/firestore";
 
 const Cart = () => {
-    const {cart, clear, removeItem, cartDetail} = useContext(CartContext);
-    console.log(cart)
+    const {cart, clear, removeItem, cartDetail, setUser} = useContext(CartContext);
+    const [formUser, setForm] = useState({ nombre: "", email: ""});
+    const [goTicket, setGoTicket] = useState(false)
+    
+    const llenarFormulario = (e) => {
+        const { name, value } = e.target;
+        setForm({
+            ...formUser,
+            [name]: value
+        });
+    };
+
+    const finalizar = () => {
+        setUser(formUser);
+        const date = new Date();
+        const db = getFirestore();
+        const ref = collection(db,'ticket');
+        const newOrder = {
+            buyer: formUser.email,
+            items: cart,
+            date: date,
+            total: cartDetail().priceTotal
+        }
+        addDoc(ref, newOrder);
+        setGoTicket(true);
+        clear();
+    }
+
     return (
+        !goTicket ?
         <div> {cartDetail().quantityProducts > 0 ? 
             // Carrito con productos   
                 <div className="itemsCartContainer">
@@ -28,6 +57,30 @@ const Cart = () => {
                             <button className ="btn" onClick={clear}>Borrar carrito</button>
                         </div>
                     </div>
+                    <div className='containerTotalCart'>
+                            <form
+                            method="POST"
+                            onSubmit={finalizar}>
+                                <input 
+                                    onChange={llenarFormulario}
+                                    type="text"
+                                    name="nombre"
+                                    placeholder="nombre"
+                                />
+                                <input 
+                                    onChange={llenarFormulario}
+                                    type="email"
+                                    name="email"
+                                    placeholder="email"
+                                />
+                                <button disabled = {
+                                    formUser.nombre === '' ||
+                                    formUser.email === ''}
+                                    className ="btn" type='submit'>
+                                        Finalizar compra
+                                </button>
+                            </form>
+                        </div>
                     
                 </div>
                 
@@ -39,7 +92,8 @@ const Cart = () => {
                 </div>
             }
         </div>
-    )
+        : <Order/>
+    );
 }
 
 export default Cart;

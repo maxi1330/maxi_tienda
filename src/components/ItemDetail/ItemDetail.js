@@ -19,7 +19,7 @@ function ItemDetail ({title, image, description, price, stock, onAdd, goToCart }
                         {!goToCart ? 
                             <ItemCount stock={stock} initial={1} onAdd={onAdd}/> :
                             <div className="btnTerminarCompra center">
-                                <Link to='/cart'><button className="btn">Terminar compra</button></Link>
+                                <Link to='/cart'><button className="btn">Ver carrito</button></Link>
                             </div>
                         }
                     </div>
