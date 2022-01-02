@@ -24,4 +24,6 @@
 > 
 > npm start
 
+##  Ejemplo:
+
 ![Libre mercado](https://github.com/maxi1330/maxi_tienda/blob/main/public/images/libre_mercado_compra.gif)
