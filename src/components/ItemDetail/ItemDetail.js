@@ -12,9 +12,9 @@ function ItemDetail ({title, image, description, price, stock, onAdd, goToCart }
                     </div>
                     <div className="col s5">
                         <div>
-                            <h4>{title}</h4>
+                            <h5>{title}</h5>
                             <p className="light">{description}</p>
-                            <p className="priceItem">Precio: {price}</p>
+                            <p className="priceItem">Precio: ${price}</p>
                         </div>
                         {!goToCart ? 
                             <ItemCount stock={stock} initial={1} onAdd={onAdd}/> :

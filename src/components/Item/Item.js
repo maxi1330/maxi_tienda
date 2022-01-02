@@ -11,14 +11,10 @@ function Item ({item}) {
                         <img src={item.image}
                                 alt='imagen auto'
                                 height='220'/>
-                        <span className="card-title">{item.title}</span>
                     </div>
                     <div className="card-content">
-                        <textarea value={item.description} readOnly/><br/>
-                        <p>${item.price}</p>
-                    </div>
-                    <div className="card-action center">
-                        <button className="btn">Agregar al carrito</button>
+                        <p className='item_price'>${item.price}</p>
+                        <textarea className='item_description' value={item.description} readOnly/><br/> 
                     </div>
                 </div>
             </Link>

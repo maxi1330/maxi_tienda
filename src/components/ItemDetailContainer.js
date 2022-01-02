@@ -24,8 +24,9 @@ function ItemDetailContainer () {
                 id: snapshot.id,
                 ...snapshot.data(),
             })
+            setLoading(false);
         });
-        setLoading(false);
+        
     }, [itemId]);
 
     return (

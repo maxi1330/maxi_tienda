@@ -8,7 +8,11 @@
 
 .priceItem{
     margin: auto;
-    text-align: start;
+    display: flex;
+    align-items: flex-start;
+    font-size: large;
+    font-weight: bold;
+    color: black;
 }
 
 .btnTerminarCompra{

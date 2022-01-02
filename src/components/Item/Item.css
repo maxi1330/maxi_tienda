@@ -2,4 +2,20 @@ textarea {
     border: none;
     outline: none;
     resize: none;
+    height: 60px;
+}
+
+.item_price{
+    display: flex;
+    align-items: flex-start;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+
+.item_description{
+    display: flex;
+    align-items: flex-start;
+    font-size: medium;
+    color: black;
 }
